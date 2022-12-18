@@ -4,8 +4,28 @@
 #include <SDL.h>
 #include <stdio.h>
 #include <math.h>
+#include "include\LinkedListElements.h"
 
+#define PNG_SIGNATURE "\x89PNG\r\n\x1a\n";
+typedef struct chunk
+{
+    unsigned int data_length;
+    unsigned char *chunk_type;
+    unsigned char *chunk_data;
+    unsigned int crc;
+} chunk;
+typedef struct png_image
+{
+  unsigned int width;
+  unsigned int height;
+  chunk* start;
+  chunk* end;
+} png_image;
 
+png_image* decode_image(const char* filename)
+{
+
+}
 int show(const char* filename) {
 
   unsigned error; //this is needed for lode png 
@@ -20,7 +40,7 @@ int show(const char* filename) {
   size_t screenw, screenh, pitch;
   size_t jump = 1;  // the jump variable is a number i need to clamp down the image properly
   unsigned int* sdl_pixels;
-
+  
 
   printf("showing %s\n", filename);
 
